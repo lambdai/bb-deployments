@@ -1,7 +1,6 @@
 local common = import 'common.libsonnet';
 
 {
-  httpListenAddress: ':7982',
   clientGrpcServers: [{
     listenAddresses: [':8982'],
     authenticationPolicy: { allow: {} },

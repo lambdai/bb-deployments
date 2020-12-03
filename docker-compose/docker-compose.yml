@@ -1,7 +1,7 @@
 version: '3'
 services:
   frontend:
-    image: buildbarn/bb-storage:20200904T173922Z-e3f0e59
+    image: buildbarn/bb-storage:20201111T150919Z-9ba4a52
     command:
     - /config/frontend.jsonnet
     ports:
@@ -11,33 +11,29 @@ services:
     - ./config:/config
 
   storage-0:
-    image: buildbarn/bb-storage:20200904T173922Z-e3f0e59
+    image: buildbarn/bb-storage:20201111T150919Z-9ba4a52
     command:
     - /config/storage.jsonnet
     expose:
     - 8981
-    ports:
-    - 7981:7981
     volumes:
     - ./config:/config
     - ./storage-ac-0:/storage-ac
     - ./storage-cas-0:/storage-cas
 
   storage-1:
-    image: buildbarn/bb-storage:20200904T173922Z-e3f0e59
+    image: buildbarn/bb-storage:20201111T150919Z-9ba4a52
     command:
     - /config/storage.jsonnet
     expose:
     - 8981
-    ports:
-    - 17981:7981
     volumes:
     - ./config:/config
     - ./storage-ac-1:/storage-ac
     - ./storage-cas-1:/storage-cas
 
   scheduler:
-    image: buildbarn/bb-scheduler:20200904T190834Z-91bd2dc
+    image: buildbarn/bb-scheduler:20201116T104239Z-1a8407a
     command:
     - /config/scheduler.jsonnet
     expose:
@@ -58,7 +54,7 @@ services:
     - ./config:/config
 
   worker-ubuntu16-04:
-    image: buildbarn/bb-worker:20200904T190834Z-91bd2dc
+    image: buildbarn/bb-worker:20201116T104239Z-1a8407a
     command:
     - /config/worker-ubuntu16-04.jsonnet
     ports:
@@ -68,7 +64,7 @@ services:
     - ./worker-ubuntu16-04:/worker
 
   runner-ubuntu16-04:
-    image: l.gcr.io/google/rbe-ubuntu16-04@sha256:b516a2d69537cb40a7c6a7d92d0008abb29fba8725243772bdaf2c83f1be2272
+    image: envoyproxy/envoy-build-ubuntu:b19d74904f19043eb196b73357853d5bce35622c
     command:
     - sh
     - -c
